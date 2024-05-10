@@ -1,8 +1,14 @@
-function sortedArrayToBST(nums) {
-  if (nums.length === 0) return null;
-  const mid = Math.floor(nums.length / 2);
-  const root = new TreeNode(nums[mid]);
-  root.left = sortedArrayToBST(nums.slice(0, mid));
-  root.right = sortedArrayToBST(nums.slice(mid + 1));
-  return root;
+function maxArea(height) {
+  let maxArea = 0;
+  let left = 0;
+  let right = height.length - 1;
+  while (left < right) {
+    maxArea = Math.max(
+      maxArea,
+      Math.min(height[left], height[right]) * (right - left),
+    );
+    if (height[left] < height[right]) left++;
+    else right--;
+  }
+  return maxArea;
 }
