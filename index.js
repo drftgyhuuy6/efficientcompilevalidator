@@ -1,14 +1,17 @@
-function maxArea(height) {
-  let maxArea = 0;
-  let left = 0;
-  let right = height.length - 1;
-  while (left < right) {
-    maxArea = Math.max(
-      maxArea,
-      Math.min(height[left], height[right]) * (right - left),
-    );
-    if (height[left] < height[right]) left++;
-    else right--;
+function allPathsSourceTarget(graph) {
+  const result = [];
+  const target = graph.length - 1;
+  dfs(graph, 0, [0]);
+  function dfs(graph, node, path) {
+    if (node === target) {
+      result.push([...path]);
+      return;
+    }
+    for (const neighbor of graph[node]) {
+      path.push(neighbor);
+      dfs(graph, neighbor, path);
+      path.pop();
+    }
   }
-  return maxArea;
+  return result;
 }
