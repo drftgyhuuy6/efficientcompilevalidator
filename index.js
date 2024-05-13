@@ -1,13 +1,7 @@
-function jump(nums) {
-  let jumps = 0;
-  let currentEnd = 0;
-  let farthest = 0;
-  for (let i = 0; i < nums.length - 1; i++) {
-    farthest = Math.max(farthest, i + nums[i]);
-    if (i === currentEnd) {
-      jumps++;
-      currentEnd = farthest;
-    }
+function countBits(num) {
+  const result = new Array(num + 1).fill(0);
+  for (let i = 1; i <= num; i++) {
+    result[i] = result[i >> 1] + (i & 1);
   }
-  return jumps;
+  return result;
 }
